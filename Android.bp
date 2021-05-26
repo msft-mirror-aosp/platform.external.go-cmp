@@ -1,0 +1,58 @@
+bootstrap_go_package {
+    name: "go-cmp",
+    pkgPath: "github.com/google/go-cmp/cmp",
+    srcs: [
+        "cmp/compare.go",
+        "cmp/export_unsafe.go",
+        "cmp/options.go",
+        "cmp/path.go",
+        "cmp/report.go",
+        "cmp/report_compare.go",
+        "cmp/report_reflect.go",
+        "cmp/report_slices.go",
+        "cmp/report_text.go",
+        "cmp/report_value.go",
+    ],
+    deps: [
+        "go-cmp-internal-diff",
+        "go-cmp-internal-flags",
+        "go-cmp-internal-function",
+        "go-cmp-internal-value",
+    ],
+}
+
+bootstrap_go_package {
+    name: "go-cmp-internal-diff",
+    pkgPath: "github.com/google/go-cmp/cmp/internal/diff",
+    srcs: [
+        "cmp/internal/diff/debug_enable.go",
+        "cmp/internal/diff/diff.go",
+    ],
+}
+
+bootstrap_go_package {
+    name: "go-cmp-internal-flags",
+    pkgPath: "github.com/google/go-cmp/cmp/internal/flags",
+    srcs: [
+        "cmp/internal/flags/flags.go",
+        "cmp/internal/flags/toolchain_recent.go",
+    ],
+}
+
+bootstrap_go_package {
+    name: "go-cmp-internal-function",
+    pkgPath: "github.com/google/go-cmp/cmp/internal/function",
+    srcs: [
+        "cmp/internal/function/func.go",
+    ],
+}
+
+bootstrap_go_package {
+    name: "go-cmp-internal-value",
+    pkgPath: "github.com/google/go-cmp/cmp/internal/value",
+    srcs: [
+        "cmp/internal/value/pointer_unsafe.go",
+        "cmp/internal/value/sort.go",
+        "cmp/internal/value/zero.go",
+    ],
+}
