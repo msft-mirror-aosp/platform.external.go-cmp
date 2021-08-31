@@ -1302,6 +1302,21 @@ using the AllowUnexported option.`, "\n"),
 		x:      struct{ X interface{} }{[1]string{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet pretium ligula, at gravida quam. Integer iaculis, velit at sagittis ultricies, lacus metus scelerisque turpis, ornare feugiat nulla nisl ac erat. Maecenas elementum ultricies libero, sed efficitur lacus molestie non. Nulla ac pretium dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque mi lorem, consectetur id porttitor id, sollicitudin sit amet enim. Duis eu dolor magna. Nunc ut augue turpis."}},
 		y:      struct{ X interface{} }{[1]string{"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet pretium ligula, at gravida quam. Integer iaculis, velit at sagittis ultricies, lacus metus scelerisque turpis, ornare feugiat nulla nisl ac erat. Maecenas elementum ultricies libero, sed efficitur lacus molestie non. Nulla ac pretium dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque mi lorem, consectetur id porttitor id, sollicitudin sit amet enim. Duis eu dolor magna. Nunc ut augue turpis,"}},
 		reason: "printing a large standalone string that is different should print enough context to see the difference",
+	}, {
+		label:  label + "/SurroundingEqualElements",
+		x:      "org-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=aa,#=_value _value=2 11\torg-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=bb,#=_value _value=2 21\torg-4747474747474747,bucket-4242424242424242:m,tag1=b,tag2=cc,#=_value _value=1 21\torg-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=dd,#=_value _value=3 31\torg-4747474747474747,bucket-4242424242424242:m,tag1=c,#=_value _value=4 41\t",
+		y:      "org-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=aa _value=2 11\torg-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=bb _value=2 21\torg-4747474747474747,bucket-4242424242424242:m,tag1=b,tag2=cc _value=1 21\torg-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=dd _value=3 31\torg-4747474747474747,bucket-4242424242424242:m,tag1=c _value=4 41\t",
+		reason: "leading/trailing equal spans should not appear in diff lines",
+	}, {
+		label:  label + "/MostlyTextString",
+		x:      "org-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=aa,\xff=_value _value=2 11\norg-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=bb,\xff=_value _value=2 21\norg-4747474747474747,bucket-4242424242424242:m,tag1=b,tag2=cc,\xff=_value _value=1 21\norg-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=dd,\xff=_value _value=3 31\norg-4747474747474747,bucket-4242424242424242:m,tag1=c,\xff=_value _value=4 41\n",
+		y:      "org-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=aa _value=2 11\norg-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=bb _value=2 21\norg-4747474747474747,bucket-4242424242424242:m,tag1=b,tag2=cc _value=1 21\norg-4747474747474747,bucket-4242424242424242:m,tag1=a,tag2=dd _value=3 31\norg-4747474747474747,bucket-4242424242424242:m,tag1=c _value=4 41\n",
+		reason: "the presence of a few invalid UTF-8 characters should not prevent printing this as text",
+	}, {
+		label:  label + "/AllLinesDiffer",
+		x:      "d5c14bdf6bac81c27afc5429500ed750\n25483503b557c606dad4f144d27ae10b\n90bdbcdbb6ea7156068e3dcfb7459244\n978f480a6e3cced51e297fbff9a506b7\n",
+		y:      "Xd5c14bdf6bac81c27afc5429500ed750\nX25483503b557c606dad4f144d27ae10b\nX90bdbcdbb6ea7156068e3dcfb7459244\nX978f480a6e3cced51e297fbff9a506b7\n",
+		reason: "all lines are different, so diffing based on lines is pointless",
 	}}
 }
 
