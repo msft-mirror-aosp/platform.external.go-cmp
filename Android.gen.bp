@@ -66,7 +66,6 @@ bootstrap_go_package {
     pkgPath: "github.com/google/go-cmp/cmp/internal/flags",
     srcs: [
         "cmp/internal/flags/flags.go",
-        "cmp/internal/flags/toolchain_recent.go",
     ],
 }
 
