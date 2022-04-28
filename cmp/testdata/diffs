@@ -38,13 +38,15 @@
   )
 >>> TestDiff/Comparer/StringerInequal
 <<< TestDiff/Comparer/DifferingHash
-  [16]uint8{
-- 	0x0c, 0xc1, 0x75, 0xb9, 0xc0, 0xf1, 0xb6, 0xa8, 0x31, 0xc3, 0x99, 0xe2, 0x69, 0x77, 0x26, 0x61,
-+ 	0x92, 0xeb, 0x5f, 0xfe, 0xe6, 0xae, 0x2f, 0xec, 0x3a, 0xd7, 0x1c, 0x77, 0x75, 0x31, 0x57, 0x8f,
+  [32]uint8{
+- 	0xca, 0x97, 0x81, 0x12, 0xca, 0x1b, 0xbd, 0xca, 0xfa, 0xc2, 0x31, 0xb3, 0x9a, 0x23, 0xdc, 0x4d,
+- 	0xa7, 0x86, 0xef, 0xf8, 0x14, 0x7c, 0x4e, 0x72, 0xb9, 0x80, 0x77, 0x85, 0xaf, 0xee, 0x48, 0xbb,
++ 	0x3e, 0x23, 0xe8, 0x16, 0x00, 0x39, 0x59, 0x4a, 0x33, 0x89, 0x4f, 0x65, 0x64, 0xe1, 0xb1, 0x34,
++ 	0x8b, 0xbd, 0x7a, 0x00, 0x88, 0xd4, 0x2c, 0x4a, 0xcb, 0x73, 0xee, 0xae, 0xd5, 0x9c, 0x00, 0x9d,
   }
 >>> TestDiff/Comparer/DifferingHash
 <<< TestDiff/Comparer/NilStringer
-  interface{}(
+  any(
 - 	&fmt.Stringer(nil),
   )
 >>> TestDiff/Comparer/NilStringer
@@ -133,19 +135,19 @@
   )
 >>> TestDiff/Comparer/StringerMapKey
 <<< TestDiff/Comparer/StringerBacktick
-  interface{}(
+  any(
 - 	[]*testprotos.Stringer{s`multi\nline\nline\nline`},
   )
 >>> TestDiff/Comparer/StringerBacktick
 <<< TestDiff/Comparer/DynamicMap
-  []interface{}{
-  	map[string]interface{}{
+  []any{
+  	map[string]any{
   		"avg":  float64(0.278),
 - 		"hr":   int(65),
 + 		"hr":   float64(65),
   		"name": string("Mark McGwire"),
   	},
-  	map[string]interface{}{
+  	map[string]any{
   		"avg":  float64(0.288),
 - 		"hr":   int(63),
 + 		"hr":   float64(63),
@@ -197,14 +199,14 @@
   }
 >>> TestDiff/Transformer/Filtered
 <<< TestDiff/Transformer/DisjointOutput
-  int(Inverse(λ, interface{}(
+  int(Inverse(λ, any(
 - 	string("zero"),
 + 	float64(1),
   )))
 >>> TestDiff/Transformer/DisjointOutput
 <<< TestDiff/Transformer/JSON
-  string(Inverse(ParseJSON, map[string]interface{}{
-  	"address": map[string]interface{}{
+  string(Inverse(ParseJSON, map[string]any{
+  	"address": map[string]any{
 - 		"city":          string("Los Angeles"),
 + 		"city":          string("New York"),
   		"postalCode":    string("10021-3100"),
@@ -213,18 +215,18 @@
   		"streetAddress": string("21 2nd Street"),
   	},
   	"age":       float64(25),
-  	"children":  []interface{}{},
+  	"children":  []any{},
   	"firstName": string("John"),
   	"isAlive":   bool(true),
   	"lastName":  string("Smith"),
-  	"phoneNumbers": []interface{}{
-  		map[string]interface{}{
+  	"phoneNumbers": []any{
+  		map[string]any{
 - 			"number": string("212 555-4321"),
 + 			"number": string("212 555-1234"),
   			"type":   string("home"),
   		},
-  		map[string]interface{}{"number": string("646 555-4567"), "type": string("office")},
-  		map[string]interface{}{"number": string("123 456-7890"), "type": string("mobile")},
+  		map[string]any{"number": string("646 555-4567"), "type": string("office")},
+  		map[string]any{"number": string("123 456-7890"), "type": string("mobile")},
   	},
 + 	"spouse": nil,
   }))
@@ -265,7 +267,7 @@
   }
 >>> TestDiff/Reporter/PanicError
 <<< TestDiff/Reporter/AmbiguousType
-  interface{}(
+  any(
 - 	"github.com/google/go-cmp/cmp/internal/teststructs/foo1".Bar{},
 + 	"github.com/google/go-cmp/cmp/internal/teststructs/foo2".Bar{},
   )
@@ -295,7 +297,7 @@
   }
 >>> TestDiff/Reporter/AmbiguousPointerMap
 <<< TestDiff/Reporter/AmbiguousStringer
-  interface{}(
+  any(
 - 	cmp_test.Stringer("hello"),
 + 	&cmp_test.Stringer("hello"),
   )
@@ -325,7 +327,7 @@
   )
 >>> TestDiff/Reporter/AmbiguousSliceHeader
 <<< TestDiff/Reporter/AmbiguousStringerMapKey
-  map[interface{}]string{
+  map[any]string{
 - 	nil:                                                                     "nil",
 + 	&⟪0xdeadf00f⟫"github.com/google/go-cmp/cmp_test".Stringer("hello"):      "goodbye",
 - 	"github.com/google/go-cmp/cmp_test".Stringer("hello"):                   "goodbye",
@@ -334,13 +336,13 @@
   }
 >>> TestDiff/Reporter/AmbiguousStringerMapKey
 <<< TestDiff/Reporter/NonAmbiguousStringerMapKey
-  map[interface{}]string{
+  map[any]string{
 + 	s"fizz":  "buzz",
 - 	s"hello": "goodbye",
   }
 >>> TestDiff/Reporter/NonAmbiguousStringerMapKey
 <<< TestDiff/Reporter/InvalidUTF8
-  interface{}(
+  any(
 - 	cmp_test.MyString("\xed\xa0\x80"),
   )
 >>> TestDiff/Reporter/InvalidUTF8
@@ -397,7 +399,7 @@
   }
 >>> TestDiff/Reporter/BatchedWithComparer
 <<< TestDiff/Reporter/BatchedLong
-  interface{}(
+  any(
 - 	cmp_test.MyComposite{IntsA: []int8{0, 1, 2, 3, 4, 5, 6, 7, ...}},
   )
 >>> TestDiff/Reporter/BatchedLong
@@ -1015,7 +1017,7 @@
   }
 >>> TestDiff/Reporter/LargeMapKey
 <<< TestDiff/Reporter/LargeStringInInterface
-  struct{ X interface{} }{
+  struct{ X any }{
   	X: strings.Join({
   		... // 485 identical bytes
   		"s mus. Pellentesque mi lorem, consectetur id porttitor id, solli",
@@ -1026,7 +1028,7 @@
   }
 >>> TestDiff/Reporter/LargeStringInInterface
 <<< TestDiff/Reporter/LargeBytesInInterface
-  struct{ X interface{} }{
+  struct{ X any }{
   	X: bytes.Join({
   		... // 485 identical bytes
   		"s mus. Pellentesque mi lorem, consectetur id porttitor id, solli",
@@ -1037,7 +1039,7 @@
   }
 >>> TestDiff/Reporter/LargeBytesInInterface
 <<< TestDiff/Reporter/LargeStandaloneString
-  struct{ X interface{} }{
+  struct{ X any }{
 - 	X: [1]string{
 - 		"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet pretium ligula, at gravida quam. Integer iaculis, velit at sagittis ultricies, lacus metus scelerisque turpis, ornare feugiat nulla nisl ac erat. Maecenas elementum ultricies libero, sed efficitur lacus molestie non. Nulla ac pretium dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque mi lorem, consectetur id porttitor id, sollicitudin sit amet enim. Duis eu dolor magna. Nunc ut augue turpis.",
 - 	},
@@ -1096,6 +1098,42 @@
   	"978f480a6e3cced51e297fbff9a506b7\n",
   }, "")
 >>> TestDiff/Reporter/AllLinesDiffer
+<<< TestDiff/Reporter/StringifiedBytes
+  struct{ X []uint8 }{
+- 	X: []uint8("hello, world!"),
++ 	X: nil,
+  }
+>>> TestDiff/Reporter/StringifiedBytes
+<<< TestDiff/Reporter/NonStringifiedBytes
+  struct{ X []uint8 }{
+- 	X: []uint8{0xde, 0xad, 0xbe, 0xef},
++ 	X: nil,
+  }
+>>> TestDiff/Reporter/NonStringifiedBytes
+<<< TestDiff/Reporter/StringifiedNamedBytes
+  struct{ X cmp_test.MyBytes }{
+- 	X: cmp_test.MyBytes("hello, world!"),
++ 	X: nil,
+  }
+>>> TestDiff/Reporter/StringifiedNamedBytes
+<<< TestDiff/Reporter/NonStringifiedNamedBytes
+  struct{ X cmp_test.MyBytes }{
+- 	X: cmp_test.MyBytes{0xde, 0xad, 0xbe, 0xef},
++ 	X: nil,
+  }
+>>> TestDiff/Reporter/NonStringifiedNamedBytes
+<<< TestDiff/Reporter/ShortJSON
+  (
+  	"""
+  	{
+- 		"id": 1,
++ 		"id": 1434180,
+  		"foo": true,
+  		"bar": true,
+  	}
+  	"""
+  )
+>>> TestDiff/Reporter/ShortJSON
 <<< TestDiff/EmbeddedStruct/ParentStructA/Inequal
   teststructs.ParentStructA{
   	privateStruct: teststructs.privateStruct{
@@ -1588,7 +1626,7 @@
   			... // 4 identical fields
   			ContSlaps:         nil,
   			ContSlapsInterval: 0,
-  			Animal: []interface{}{
+  			Animal: []any{
   				teststructs.Goat{
   					Target:     "corporation",
   					Slaps:      nil,
