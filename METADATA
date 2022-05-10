@@ -1,8 +1,5 @@
 name: "go-cmp"
-description:
-    "This package is intended to be a more powerful and safer alternative to "
-    "reflect.DeepEqual for comparing whether two values are semantically equal."
-
+description: "This package is intended to be a more powerful and safer alternative to reflect.DeepEqual for comparing whether two values are semantically equal."
 third_party {
   url {
     type: HOMEPAGE
@@ -12,7 +9,11 @@ third_party {
     type: GIT
     value: "https://github.com/google/go-cmp.git"
   }
-  version: "v0.5.5"
-  last_upgrade_date { year: 2021 month: 5 day: 19 }
+  version: "v0.5.7"
   license_type: NOTICE
+  last_upgrade_date {
+    year: 2022
+    month: 3
+    day: 29
+  }
 }
