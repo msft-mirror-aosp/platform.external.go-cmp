@@ -13,7 +13,7 @@ bootstrap_go_package {
     ],
     srcs: [
         "cmp/compare.go",
-        "cmp/export_unsafe.go",
+        "cmp/export.go",
         "cmp/options.go",
         "cmp/path.go",
         "cmp/report.go",
@@ -126,7 +126,7 @@ bootstrap_go_package {
     pkgPath: "github.com/google/go-cmp/cmp/internal/value",
     srcs: [
         "cmp/internal/value/name.go",
-        "cmp/internal/value/pointer_unsafe.go",
+        "cmp/internal/value/pointer.go",
         "cmp/internal/value/sort.go",
     ],
     testSrcs: [
