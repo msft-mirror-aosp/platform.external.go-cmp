@@ -15,6 +15,7 @@ third_party {
   identifier {
     type: "Git"
     value: "https://github.com/google/go-cmp.git"
-    version: "v0.6.0"
+    version: "c3ad8435e7bef96af35732bc0789e5a2278c6d5f"
+    closest_version: "v0.6.0"
   }
 }
